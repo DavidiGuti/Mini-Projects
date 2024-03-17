@@ -81,12 +81,12 @@ def interface(seaPlayer, user_input_first):
             print("")
             print(x, "║ ", end="")
             for y in range(9):
-                if seaPlayer[x][y] == "▆ ":
-                    print(seaPlayer[x][y], end=" ")    
-                elif y == 8 and seaPlayer[x][y] == "▆ ":
+                if y == 8 and seaPlayer[x][y] == "▆ ":
                     print(seaPlayer[x][y], end="")    
                 elif seaPlayer[x][y] == "▆":
                     print(seaPlayer[x][y], end="▆▆")    
+                elif seaPlayer[x][y] == "▆ ":
+                    print(seaPlayer[x][y], end=" ")    
                 else:
                     if y == 8:
                         print(seaPlayer[x][y], end=" ")    
@@ -113,12 +113,12 @@ def interface_game(seaPlayer1, seaPlayer2):
         print("")
         print(x, "║ ", end="")
         for y in range(9):
-            if seaPlayer1[x][y] == "▆ ":
-                print(seaPlayer1[x][y], end=" ")    
-            elif y == 8 and seaPlayer1[x][y] == "▆ ":
-                print(seaPlayer1[x][y], end="")    
+            if y == 8 and seaPlayer1[x][y] == "▆ ":
+                print(seaPlayer1[x][y], end="")      
             elif seaPlayer1[x][y] == "▆":
-                print(seaPlayer1[x][y], end="▆▆")    
+                print(seaPlayer1[x][y], end="▆▆")
+            elif seaPlayer1[x][y] == "▆ ":
+                print(seaPlayer1[x][y], end=" ")      
             else:
                 if y == 8:
                     print(seaPlayer1[x][y], end=" ")    
@@ -126,12 +126,12 @@ def interface_game(seaPlayer1, seaPlayer2):
                     print(seaPlayer1[x][y], end="  ")  
         print("║     ║ ", end="")
         for y in range(9):
-            if seaPlayer2[x][y] == "▆ ":
-                print(seaPlayer2[x][y], end=" ")    
-            elif y == 8 and seaPlayer2[x][y] == "▆ ":
-                print(seaPlayer2[x][y], end="")    
+            if y == 8 and seaPlayer2[x][y] == "▆ ":
+                print(seaPlayer2[x][y], end="")   
             elif seaPlayer2[x][y] == "▆":
-                print(seaPlayer2[x][y], end="▆▆")    
+                print(seaPlayer2[x][y], end="▆▆")
+            elif seaPlayer2[x][y] == "▆ ":
+                print(seaPlayer2[x][y], end=" ")       
             else:
                 if y == 8:
                     print(seaPlayer2[x][y], end=" ")    
@@ -281,11 +281,11 @@ def shot_Player1(board1, seaPlayer1, board2, user_message):
         shot_input = input(user_message)
         shot_input = shot_input.upper()
         shot_input = user_input_boat(shot_input)
-    board1[int(shot_input[0])][letter.index(shot_input[1])] = seaPlayer1[int(shot_input[0])][letter.index(shot_input[1])]
-    return board1
+    board2[int(shot_input[0])][letter.index(shot_input[1])] = seaPlayer1[int(shot_input[0])][letter.index(shot_input[1])]
+    return board2
 
-def shot_Player2(board1, seaPlayer1, board2, user_message):  
-    interface_game(board2, board1)
+def shot_Player2(board2, seaPlayer2, board1, user_message):  
+    interface_game(board1, board2)
     shot_input = ""
     while shot_input == "!! INVALID INPUT !!" or shot_input == "":
         if shot_input == "!! INVALID INPUT !!":
@@ -293,7 +293,7 @@ def shot_Player2(board1, seaPlayer1, board2, user_message):
         shot_input = input(user_message)
         shot_input = shot_input.upper()
         shot_input = user_input_boat(shot_input)
-    board1[int(shot_input[0])][letter.index(shot_input[1])] = seaPlayer1[int(shot_input[0])][letter.index(shot_input[1])]
+    board1[int(shot_input[0])][letter.index(shot_input[1])] = seaPlayer2[int(shot_input[0])][letter.index(shot_input[1])]
     return board1
 
 
@@ -330,7 +330,7 @@ num1_2 = 0
 num2_2 = 0
 
 while num1 != num1_2 and num2 != num2_2:
-    boardPlayer1 = shot_Player1(boardPlayer1, seaPlayer1, boardPlayer2, """- Turn of Player 1 - 
+    boardPlayer2 = shot_Player1(boardPlayer1, seaPlayer2, boardPlayer2, """- Turn of Player 1 - 
 - Put the coords where you want to shoot in the Board of the Player 2: """)
 
     num1_2 = 0
@@ -341,7 +341,7 @@ while num1 != num1_2 and num2 != num2_2:
     
     
     if num1 != num1_2:
-        boardPlayer2 = shot_Player2(boardPlayer2, seaPlayer2, boardPlayer1, """- Turn of Player 2 - 
+        boardPlayer1 = shot_Player2(boardPlayer2, seaPlayer1, boardPlayer1, """- Turn of Player 2 - 
 - Put the coords where you want to shoot in the Board of the Player 1: """)
     
         num2_2 = 0
