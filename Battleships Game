@@ -104,7 +104,7 @@ def interface(seaPlayer, user_input_first):
 def interface_game(seaPlayer1, seaPlayer2):
 
     print("""
-  ╔═══════BoardPlayer 1═══════╗     ╔═══════BoardPlayer 2═══════╗""", end="")
+  ╔═══════BoardPlayer 1═══════╗          ╔═══════BoardPlayer 2═══════╗""", end="")
 
  
     for x in range(9):
@@ -124,7 +124,8 @@ def interface_game(seaPlayer1, seaPlayer2):
                     print(seaPlayer1[x][y], end=" ")    
                 else:      
                     print(seaPlayer1[x][y], end="  ")  
-        print("║     ║ ", end="")
+        print("║        ", end="")
+        print(x, "║ ", end="")
         for y in range(9):
             if y == 8 and seaPlayer2[x][y] == "▆ ":
                 print(seaPlayer2[x][y], end="")   
@@ -138,8 +139,8 @@ def interface_game(seaPlayer1, seaPlayer2):
                 else:      
                     print(seaPlayer2[x][y], end="  ")                        
     print("""║
-  ╚═══════════════════════════╝     ╚═══════════════════════════╝
-    A  B  C  D  E  F  G  H  I         A  B  C  D  E  F  G  H  I 
+  ╚═══════════════════════════╝          ╚═══════════════════════════╝
+    A  B  C  D  E  F  G  H  I              A  B  C  D  E  F  G  H  I 
 """)
     
 #█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█
