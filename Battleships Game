@@ -1,0 +1,360 @@
+#████████████████████████████████████████████████████████████████████ BOARDS AND VARIABLES ████████████████████████████████████████████████████████████████████ 
+seaPlayer1 = [["~"] * 9 for _ in range(9)]
+"""seaPlayer1 = [["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"]]"""
+
+boardPlayer1 = [["?"] * 9 for _ in range(9)]
+
+"""boardPlayer1 = [["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"]]"""
+
+seaPlayer2 = [["~"] * 9 for _ in range(9)]
+
+"""seaPlayer2 = [["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"],
+              ["~","~","~","~","~","~","~","~","~"]]"""
+boardPlayer2 = [["?"] * 9 for _ in range(9)]
+
+"""boardPlayer2 = [["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"],
+                ["?","?","?","?","?","?","?","?","?"]]"""
+
+letter = "ABCDEFGHI"
+
+user_input_first1 = "None"
+
+user_input_first2 = "None"
+
+shot_input = "None"
+
+#███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████ 
+
+
+#████████████████████████████████████████████████████████████████████ FUNCTIONS ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████ 
+
+
+
+#█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█ INTERFACE █■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█
+
+def interface(seaPlayer, user_input_first):
+    if user_input_first == "START":
+         print("""
+  ╔════════Final Board════════╗""", end="")
+    else:
+
+        if seaPlayer == seaPlayer1 or seaPlayer == boardPlayer1:   
+            print("""
+  ╔═══════BoardPlayer 1═══════╗""", end="")
+        else:
+             print("""
+  ╔═══════BoardPlayer 2═══════╗""", end="")
+             
+        for x in range(9):
+            if x != 0:
+                print("║", end="")
+            print("")
+            print(x, "║ ", end="")
+            for y in range(9):
+                if seaPlayer[x][y] == "▆ ":
+                    print(seaPlayer[x][y], end=" ")    
+                elif y == 8 and seaPlayer[x][y] == "▆ ":
+                    print(seaPlayer[x][y], end="")    
+                elif seaPlayer[x][y] == "▆":
+                    print(seaPlayer[x][y], end="▆▆")    
+                else:
+                    if y == 8:
+                        print(seaPlayer[x][y], end=" ")    
+                    else:      
+                        print(seaPlayer[x][y], end="  ")                        
+    print("""║
+  ╚═══════════════════════════╝
+    A  B  C  D  E  F  G  H  I 
+""")
+    
+#█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█
+
+#█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█ INTERFACE_GAME █■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█
+
+def interface_game(seaPlayer1, seaPlayer2):
+
+    print("""
+  ╔═══════BoardPlayer 1═══════╗     ╔═══════BoardPlayer 2═══════╗""", end="")
+
+ 
+    for x in range(9):
+        if x != 0:
+            print("║", end="")
+        print("")
+        print(x, "║ ", end="")
+        for y in range(9):
+            if seaPlayer1[x][y] == "▆ ":
+                print(seaPlayer1[x][y], end=" ")    
+            elif y == 8 and seaPlayer1[x][y] == "▆ ":
+                print(seaPlayer1[x][y], end="")    
+            elif seaPlayer1[x][y] == "▆":
+                print(seaPlayer1[x][y], end="▆▆")    
+            else:
+                if y == 8:
+                    print(seaPlayer1[x][y], end=" ")    
+                else:      
+                    print(seaPlayer1[x][y], end="  ")  
+        print("║     ║ ", end="")
+        for y in range(9):
+            if seaPlayer2[x][y] == "▆ ":
+                print(seaPlayer2[x][y], end=" ")    
+            elif y == 8 and seaPlayer2[x][y] == "▆ ":
+                print(seaPlayer2[x][y], end="")    
+            elif seaPlayer2[x][y] == "▆":
+                print(seaPlayer2[x][y], end="▆▆")    
+            else:
+                if y == 8:
+                    print(seaPlayer2[x][y], end=" ")    
+                else:      
+                    print(seaPlayer2[x][y], end="  ")                        
+    print("""║
+  ╚═══════════════════════════╝     ╚═══════════════════════════╝
+    A  B  C  D  E  F  G  H  I         A  B  C  D  E  F  G  H  I 
+""")
+    
+#█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█
+    
+
+#█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█ USER_INPUT_BOAT █■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█
+    
+def user_input_boat(user_input):
+    new_input = user_input
+    letter_counter = 0
+    letter = ["A","B","C","D","E","F","G","H","I"]
+    if len(user_input) != 2:
+        return "!! INVALID INPUT !!"
+    else:            
+        for x in letter:
+            if user_input[0] == x:
+                new_input = user_input[1]
+                new_input = new_input + user_input[0]
+                letter_counter = letter_counter + 1
+        for y in letter:
+            if user_input[1] == y:
+                letter_counter = letter_counter + 1
+            
+        if letter_counter != 1:
+            return "!! INVALID INPUT !!"
+        else:
+            return new_input
+    
+
+#█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█
+
+
+#█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█ CREATE BOAT █■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█
+
+def createBoat(seaPlayer, user_input_first): 
+    invalidcount = 0 
+
+#══════════════════════════════════════════════════════════════════════╣ INPUT ╠═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+    
+    print("Write (start) to start the game")
+    user_input_first = ""
+    while user_input_first == "!! INVALID INPUT !!" or user_input_first == "":
+        if user_input_first == "!! INVALID INPUT !!":
+            print("!! INVALID INPUT !!")
+        user_input_first = input("Put the coords of the first part of the boat: ")
+        user_input_first = user_input_first.upper()
+        if user_input_first != "START":
+            user_input_first = user_input_boat(user_input_first)
+
+#---------------------------------- Checks if user_input is different to "start" because if input = "start" the game starts if not we request the second input-------------------------------------------------------------------------------------------------------------
+
+    if user_input_first != "START":
+        user_input_last = ""
+        while user_input_last == "!! INVALID INPUT !!" or user_input_last == "":
+            if user_input_last == "!! INVALID INPUT !!":
+                print(user_input_last)
+            user_input_last = input("Put the coords of the final part of the boat: ")
+            user_input_last = user_input_last.upper()
+            user_input_last = user_input_boat(user_input_last)
+
+#═════════════════════════════════════════════════════════════════════╣ OUTPUT ╠═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+#------------------------------------------------- If the user puts the inputs in a diferent order we change it ------------------------------------------------------------------------------------------------------------------------------------------------------
+        
+
+        if user_input_first[0] > user_input_last[0] or letter.index(user_input_first[1]) > letter.index(user_input_last[1]):
+            print(user_input_first, user_input_last)
+            change = user_input_last
+            user_input_last = user_input_first 
+            user_input_first = change
+        if user_input_first[0] != user_input_last[0] and letter.index(user_input_first[1]) != letter.index(user_input_last[1]):
+            interface(seaPlayer, user_input_first)
+            print("!! INVALID INPUT !!")
+        else:
+
+#------------------------------------------------- If the user puts the same inputs wanting to create a 1 square boat we cancel ------------------------------------------------------------------------------------------------------------------------------------------------------
+     
+            if user_input_first == user_input_last:
+                interface(seaPlayer, user_input_first)
+                print("!! INVALID INPUT !!")
+            
+#------------------------------------------------- If not we continue------------------------------------------------------------------------------------------------------------------------------------------------------
+      
+            else:
+
+#------------------------------------------------- If user_input == start we skip all this ------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                if  user_input_first != "start":
+                    x = range(int(user_input_first[0]), int(user_input_last[0])+1)
+                    y = range(letter.index(user_input_first[1]), letter.index(user_input_last[1])+1)
+                    
+                    for n1 in x:
+                            for n2 in y:
+                            
+                                    if seaPlayer[n1][n2] == "▆  " or  seaPlayer[n1][n2] == "▉" or seaPlayer[n1][n2] == "▆":
+                                        invalidcount = invalidcount + 1
+
+                    if invalidcount == 0:
+
+#------------------------------------------------- Horinzontal Boat ------------------------------------------------------------------------------------------------------------------------------------------------------
+                        for n1 in x:
+                            for n2 in y:
+
+                                #elif n1 == int(user_input_first[0]) and n2 == letter.index(user_input_first[1]) and letter.index(user_input_first[1]) == letter.index(user_input_last[1]):
+                                            #seaPlayer[n1][n2] = "╥"                
+                                #elif n1 == int(user_input_last[0]) and n2 == letter.index(user_input_last[1]) and letter.index(user_input_first[1]) == letter.index(user_input_last[1]):
+                                            #seaPlayer[n1][n2] = "╨"  
+                                if letter.index(user_input_first[1]) == letter.index(user_input_last[1]):
+                                            seaPlayer[n1][n2] = "▉"
+
+#------------------------------------------------- Vertical Boat ------------------------------------------------------------------------------------------------------------------------------------------------------
+                                              
+                                #elif n1 == int(user_input_first[0]) and n2 == letter.index(user_input_first[1]) and letter.index(user_input_first[1]) != letter.index(user_input_last[1]):
+                                            #seaPlayer[n1][n2] = "╞"                
+                                elif n1 == int(user_input_last[0]) and n2 == letter.index(user_input_last[1]) and letter.index(user_input_first[1]) != letter.index(user_input_last[1]):
+                                            seaPlayer[n1][n2] = "▆ "  
+                                elif letter.index(user_input_first[1]) != letter.index(user_input_last[1]):
+                                            seaPlayer[n1][n2] = "▆"                   
+                        interface(seaPlayer, user_input_first)
+                    else:
+                        interface(seaPlayer, user_input_first)
+                        print("""!! INVALID INPUT !!                            
+!! You're trying to create a boat on top of another boat !!
+""")
+
+    return seaPlayer, user_input_first
+
+#█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█
+
+
+#█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█ SHOT BOAT █■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█
+
+def shot_Player1(board1, seaPlayer1, board2, user_message):       
+    interface_game(board1, board2)
+    shot_input = ""
+    while shot_input == "!! INVALID INPUT !!" or shot_input == "":
+        if shot_input == "!! INVALID INPUT !!":
+            print("!! INVALID INPUT !!")
+        shot_input = input(user_message)
+        shot_input = shot_input.upper()
+        shot_input = user_input_boat(shot_input)
+    board1[int(shot_input[0])][letter.index(shot_input[1])] = seaPlayer1[int(shot_input[0])][letter.index(shot_input[1])]
+    return board1
+
+def shot_Player2(board1, seaPlayer1, board2, user_message):  
+    interface_game(board2, board1)
+    shot_input = ""
+    while shot_input == "!! INVALID INPUT !!" or shot_input == "":
+        if shot_input == "!! INVALID INPUT !!":
+            print("!! INVALID INPUT !!")
+        shot_input = input(user_message)
+        shot_input = shot_input.upper()
+        shot_input = user_input_boat(shot_input)
+    board1[int(shot_input[0])][letter.index(shot_input[1])] = seaPlayer1[int(shot_input[0])][letter.index(shot_input[1])]
+    return board1
+
+
+#█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█
+
+
+#█■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█ CONDITIONALS █■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■█
+
+interface(seaPlayer1, user_input_first1)
+
+while user_input_first1 != "START" :
+    seaPlayer1, user_input_first1 = createBoat(seaPlayer1, user_input_first1,)
+    
+
+while user_input_first2 != "START" :
+    interface(seaPlayer2, user_input_first2)
+    seaPlayer2, user_input_first2 = createBoat(seaPlayer2, user_input_first2,)
+
+num1 = 0
+
+num2 = 0
+
+for x1 in seaPlayer1:
+    for y1 in x1:
+        if y1 == "▉" or y1 == "▆" or y1 == "▆ ":
+            num1 = num1 + 1
+
+for x2 in seaPlayer2:
+    for y2 in x2:
+        if y2 == "▉" or y2 == "▆" or y2 == "▆ ":
+            num2 = num2 + 1
+
+num1_2 = 0
+num2_2 = 0
+
+while num1 != num1_2 and num2 != num2_2:
+    boardPlayer1 = shot_Player1(boardPlayer1, seaPlayer1, boardPlayer2, """- Turn of Player 1 - 
+- Put the coords where you want to shoot in the Board of the Player 2: """)
+
+    num1_2 = 0
+    for x1_2 in boardPlayer1:  
+        for y1_2 in x1_2:
+            if y1_2 == "▉" or y1_2 == "▆" or y1_2 == "▆ ":
+                num1_2 = num1_2 + 1
+    
+    
+    if num1 != num1_2:
+        boardPlayer2 = shot_Player2(boardPlayer2, seaPlayer2, boardPlayer1, """- Turn of Player 2 - 
+- Put the coords where you want to shoot in the Board of the Player 1: """)
+    
+        num2_2 = 0
+        for x2_2 in boardPlayer2:  
+            for y2_2 in x2_2:
+                if y2_2 == "▉" or y2_2 == "▆" or y2_2 == "▆ ":
+                    num2_2 = num2_2 + 1
+
+if num1 == 0 or num2 == 0:
+    print("!! INVALID BOARD !!")
+elif num1 == num1_2:
+    interface_game(seaPlayer2, seaPlayer1)
+    print("!! Player 1 Win !!")
+elif num2 == num2_2:
+    interface_game(seaPlayer1, seaPlayer2)
+    print("!! Player 2 Win !!")
